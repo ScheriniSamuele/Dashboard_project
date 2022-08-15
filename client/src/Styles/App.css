@@ -1,0 +1,74 @@
+:root {
+    --background-color: #1C2238;
+    --blocks-color: #21273F;
+    --purple-shade: #987EEC;
+    --yellow-shade: #FFDA6C;
+    --red-shade: #F16D6D;
+    --text-color: #EEF0F6;
+    --grey-shade: #A8A8A8;
+    --grey-shade-2: #394057;
+    --font-size: 16px;
+}
+
+body,
+html {
+    background-color: var(--background-color);
+    height: 100%;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size);
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    min-width: 300px;
+}
+
+.errorMsg {
+    color: var(--red-shade);
+    text-align: center;
+    margin-top: 1.3rem;
+}
+
+.user-main-content {
+    margin-left: 20rem;
+    margin-right: 5rem;
+}
+
+.section-title {
+    margin: 2rem 0rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.text-input {
+    background-color: transparent;
+    padding: 1rem 1rem;
+    border: 2px solid var(--text-color);
+    border-radius: 0.8rem;
+    color: var(--text-color);
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.input-label {
+    color: var(--grey-shade);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.2rem;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .user-main-content {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 10rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    html,
+    body {
+        font-size: 12px;
+    }
+}
