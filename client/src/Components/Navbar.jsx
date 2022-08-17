@@ -11,7 +11,7 @@ const Navbar = () => {
                 <span className='invisible'>
                     <li className='logo'>Poli Dash</li>
                 </span>
-                <Link to='/dashboard' className='navbar-menu-link'>
+                <Link to='/' className='navbar-menu-link'>
                     <li className='navbar-menu-item'>
                         <Icon className='navbar-menu-icon' icon='bxs:dashboard' color='white' />
                         <span className='invisible'>Dashboard</span>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { getCurrentUserFromStorage, setHeaderToken } from '../Helpers/UserHelpers';
+import '../Styles/Settings.css';
 import * as yup from 'yup';
 import { Icon } from '@iconify/react';
 
@@ -9,8 +11,6 @@ import InputCosts from '../Components/InputCosts';
 import InputPower from '../Components/InputPower';
 import InputPath from '../Components/InputPath';
 import Popup from '../Components/Popup';
-
-import '../Styles/Settings.css';
 
 const Settings = () => {
     const [timeSlots, setTimeSlots] = useState('');
@@ -23,7 +23,7 @@ const Settings = () => {
     const settingsSchema = yup.object().shape({
         power: yup.number().positive().required(),
         inputPath: yup.string().required(),
-        typology: yup.string().required(),
+        typology:  yup.string().required(),
         costs: yup.array().min(1).required(),
     });
 
@@ -32,11 +32,13 @@ const Settings = () => {
     }, []);
 
     const fetchUserSettings = () => {
+        const userId = getCurrentUserFromStorage();
         const query = process.env.REACT_APP_API_SERVER + 'users/settings'; // Query string
 
+        setHeaderToken(); // to set the Bearer token before calling axios
         // Get
         axios
-            .get(query)
+            .get(query, userId)
             .then((response) => {
                 const receivedSlots = response.data.contract.typology;
                 const receivedCosts = response.data.contract.costs;
@@ -90,10 +92,10 @@ const Settings = () => {
             <h1 className='section-title'>Your Settings</h1>
 
             <form className='settings-form'>
-                <InputPower setPower={setPower} />
-                <InputPath setInputPath={setInputPath} />
+                <InputPower setPower={setPower}/>
+                <InputPath setInputPath={setInputPath}/>
                 <InputContract timeSlots={timeSlots} changeTimeSlots={changeTimeSlots} setOpenPopup={setOpenPopup}></InputContract>
-                <InputCosts timeSlots={timeSlots} userCosts={userCosts} setCosts={setUserCosts} />
+                <InputCosts timeSlots={timeSlots} userCosts={userCosts} setCosts={setUserCosts}/>
                 <div className='settings-update-button-wrapper' onClick={updateUserSettings}>
                     <Icon icon='el:upload' className='settings-update-button' />
                 </div>

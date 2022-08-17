@@ -1,0 +1,153 @@
+.settings-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.settings-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    gap: 1rem;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.settings-box {
+    background-color: var(--blocks-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.settings-input-power {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-input-path {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-graph-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    float: left;
+}
+
+.settings-graph-item {
+    display: inline !important;
+    width: 50% !important;
+    height: 50% !important;
+}
+
+.settings-graph-main ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    font-size: 1.3rem;
+    width: 40%;
+    margin: 0;
+    padding: 0;
+}
+
+.settings-graph-main ul li {
+    margin: 0.3rem;
+}
+
+.settings-input-power-box {
+    width: 30%;
+}
+
+.settings-input-cost-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.settings-input-cost-main div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cost-labels {
+    font-size: 1rem;
+}
+
+.settings-input-title {
+    font-size: 1.5rem;
+}
+
+.input-select {
+    width: 40%;
+    border: 2px solid;
+    border-radius: 0.5rem;
+}
+
+.css-6j8wv5-Input {
+    color: var(--text-color) !important;
+}
+
+.input-contract-select-main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.settings-icon {
+    font-size: 32px;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.settings-update-button {
+    font-size: 3rem;
+    color: var(--grey-shade-2);
+    background-color: var(--yellow-shade);
+    padding: 0.6rem;
+    border-radius: 100%;
+}
+
+.settings-update-button-wrapper {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+}
+
+.wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+    .settings-update-button-wrapper {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: -2.5rem;
+        left: -1rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .settings-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
