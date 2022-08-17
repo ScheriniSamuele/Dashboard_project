@@ -20,11 +20,12 @@ Abbiamo deciso di realizzare una WebApp utilizzando JavaScript sia come linguagg
 
 ### Server
 
-| Libreria    | Descrizione                                                                       |
-| ----------- | --------------------------------------------------------------------------------- |
-| **Express** | Framework per applicazioni Node.js, utile per la creazione e gestione del server. |
-| **Cors**    | Libreria per permettere lo sharing tra browser e server.                          |
-| **DotEnv**  | Libreria che permette la creazione e l'utilizzo di variabili d'ambiente.          |
+| Libreria          | Descrizione                                                                       |
+| ----------------- | --------------------------------------------------------------------------------- |
+| **Express**       | Framework per applicazioni Node.js, utile per la creazione e gestione del server. |
+| **Cors**          | Libreria per permettere lo sharing tra browser e server.                          |
+| **DotEnv**        | Libreria che permette la creazione e l'utilizzo di variabili d'ambiente.          |
+| **EditJsonFiles** | Libreria che permette l'update semplificato di file .json.                        |
 
 ### Client
 
