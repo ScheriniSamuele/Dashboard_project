@@ -32,7 +32,7 @@ const Settings = () => {
     }, []);
 
     const fetchUserSettings = () => {
-        const query = process.env.REACT_APP_API_SERVER + 'users/settings'; // Query string
+        const query = process.env.REACT_APP_API_SERVER + 'settings/getSettings'; // Query string
 
         // Get
         axios
@@ -68,7 +68,7 @@ const Settings = () => {
             return;
         }
 
-        const query = process.env.REACT_APP_API_SERVER + 'users/settings'; // Query string
+        const query = process.env.REACT_APP_API_SERVER + 'settings/getSettings'; // Query string
 
         await axios.put(query, userSettings).catch((err) => {
             if (err) {
