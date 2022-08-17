@@ -1,0 +1,9 @@
+{
+  "inputPath": "/Users/samuelescherini/FullstackProjects/data.csv",
+  "power": 3.3,
+  "typology": "double-slots",
+  "costs": [
+    0.295,
+    0.242
+  ]
+}
