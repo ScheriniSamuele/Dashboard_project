@@ -38,10 +38,10 @@ const Settings = () => {
         axios
             .get(query)
             .then((response) => {
-                const receivedSlots = response.data.contract.typology;
-                const receivedCosts = response.data.contract.costs;
+                const receivedSlots = response.data.typology;
+                const receivedCosts = response.data.costs;
+                console.log(response);
                 const parsedCosts = receivedCosts.split(',');
-
                 setUserCosts(parsedCosts);
 
                 setTimeSlots(receivedSlots);
@@ -61,14 +61,14 @@ const Settings = () => {
 
         console.log(userSettings);
 
-        try {
+        /*try {
             await settingsSchema.validate(userSettings); // Yup validate userSettings based on schema
         } catch (error) {
             setErrorMsg(error.errors); // Errors from client side validation
             return;
-        }
+        }*/
 
-        const query = process.env.REACT_APP_API_SERVER + 'settings/getSettings'; // Query string
+        const query = process.env.REACT_APP_API_SERVER + 'settings/setSettings'; // Query string
 
         await axios.put(query, userSettings).catch((err) => {
             if (err) {
