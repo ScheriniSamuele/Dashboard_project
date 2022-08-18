@@ -1,12 +1,13 @@
 //Simple middleware used to handle errors in async functions
 import asyncHandler from 'express-async-handler';
 
-import { typology_enum } from '../data/enums.js';
+import * as fs from 'fs';
 import dotenv from 'dotenv';
 import editJsonFile from 'edit-json-file';
-import * as fs from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+
+import { typology_enum } from '../data/enums.js';
 
 // DOTENV configuration, the filepath for User settings is stored as an Ambient Variable
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
