@@ -33,9 +33,11 @@ const InputCosts = (props) => {
     const showInputs = () => {
         return slots.map((slot, index) => (
             
-            <span key={slot}>
+            <span key={slot} className={
+                slots.length === 1 ? 'single-cost-input' : index === 0 ? 'first-cost-input' : 'cost-inputs'
+              }>
                 <label className='cost-labels'> {slot}: </label>
-                <input className='text-input' name='costs' type='text' defaultValue={userCosts[index]} onChange={(e) => onCostChange(e, index)}/>
+                <input className='text-input text-input-costs' name='costs' type='text' defaultValue={userCosts[index]} onChange={(e) => onCostChange(e, index)}/>
             </span>
         ));
     };

@@ -18,6 +18,12 @@
     border-radius: 1rem;
 }
 
+.settings-error-msg {
+    color: var(--red-shade);
+    text-align: center;
+    margin-top: 5%;
+}
+
 .settings-input-power {
     display: flex;
     flex-direction: column;
@@ -64,7 +70,7 @@
 .settings-input-cost-main {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -83,6 +89,21 @@
     font-size: 1.5rem;
 }
 
+.text-input-costs {
+    width: 350px;
+}
+
+.cost-inputs {
+    margin-top: 5%;
+}
+
+.first-cost-input {
+    margin-top: 15%;
+}
+
+.single-cost-input{
+    margin-top: 30%;
+}
 .input-select {
     width: 40%;
     border: 2px solid;
@@ -141,6 +162,12 @@
         position: absolute;
         bottom: -2.5rem;
         left: -1rem;
+    }
+
+    .settings-error-msg {
+        color: var(--red-shade);
+        text-align: center;
+        margin-top: 12%;
     }
 }
 

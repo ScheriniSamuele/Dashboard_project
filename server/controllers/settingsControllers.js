@@ -26,6 +26,7 @@ const file = editJsonFile(path);
 export const getSettings = asyncHandler(async (req, res) => {
     // Check if file exists and can
     console.log(path);
+
     if (!fs.existsSync(path)) {
         res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
         throw new Error('Invalid path for reading');

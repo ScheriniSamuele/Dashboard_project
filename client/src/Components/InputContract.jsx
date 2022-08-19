@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import Select from 'react-select';
+import DoughnutChart from './DoughnutChart';
+import { selectorStyles } from '../Helpers/Configurations';
 import { Icon } from '@iconify/react';
 
 const InputContract = (props) => {
@@ -67,7 +69,9 @@ const InputContract = (props) => {
         <div className='settings-box input-contract-main'>
             <div className='input-contract-select-main'>
                 <h1 className='settings-input-title'>Contract type: </h1>
+                <Select styles={selectorStyles} className='input-select' options={options} onChange={changeTimeSlots} value={{ label: timeSlots, value: timeSlots }}></Select>
             </div>
+            <DoughnutChart chartData={data} />
 
             <div className='wrap'>
                 <Icon

@@ -33,18 +33,13 @@ const Settings = () => {
 
     const fetchUserSettings = () => {
         const query = process.env.REACT_APP_API_SERVER + 'settings/getSettings'; // Query string
-
+        
         // Get
         axios
             .get(query)
             .then((response) => {
-                const receivedSlots = response.data.typology;
-                const receivedCosts = response.data.costs;
-                console.log(response);
-                const parsedCosts = receivedCosts.split(',');
-                setUserCosts(parsedCosts);
-
-                setTimeSlots(receivedSlots);
+                setUserCosts(response.data.costs);
+                setTimeSlots(response.data.typology);
             })
             .catch(console.log);
     };
@@ -61,12 +56,12 @@ const Settings = () => {
 
         console.log(userSettings);
 
-        /*try {
+        try {
             await settingsSchema.validate(userSettings); // Yup validate userSettings based on schema
         } catch (error) {
             setErrorMsg(error.errors); // Errors from client side validation
             return;
-        }*/
+        }
 
         const query = process.env.REACT_APP_API_SERVER + 'settings/setSettings'; // Query string
 
@@ -99,7 +94,7 @@ const Settings = () => {
                 </div>
             </form>
 
-            <div className='errorMsg'>{errorMsg}</div>
+            <div className='settings-error-msg'>{errorMsg}</div>
         </motion.div>
     );
 };
