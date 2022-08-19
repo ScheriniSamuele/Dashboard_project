@@ -19,4 +19,7 @@ app.get('/', (req, res) => res.json({ message: 'Server up and running' }));
 import settingsRouter from './routes/settings.js';
 app.use('/api/settings', settingsRouter);
 
+import dashboardRouter from './routes/dashboard.js';
+app.use('/api/dashboard', dashboardRouter)
+
 app.listen(port, () => console.log(`app listening on port ${port}`));
