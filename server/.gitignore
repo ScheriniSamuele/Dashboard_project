@@ -1,9 +1,12 @@
 # Dependency directories
 node_modules/
 
+
 # Optional npm cache directory
 .npm
 
 
 # misc
 .DS_Store
+
+.csv
