@@ -25,7 +25,6 @@ const file = editJsonFile(path);
 // @desc Get the user settings from the Json file
 export const getSettings = asyncHandler(async (req, res) => {
     // Check if file exists and can
-    console.log(path);
 
     if (!fs.existsSync(path)) {
         res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
@@ -47,10 +46,8 @@ export const setSettings = asyncHandler(async (req, res) => {
         throw new Error('Please add all fields');
     }
 
-    const testPower = parseInt(power);
-
     // Check if power is a number
-    if (typeof testPower != 'number') {
+    if (isNaN(parseInt(power))) {
         res.status(400).json({ status: 'ko', errorMsg: 'Power must be a number' });
         throw new Error('Inserted power is not a number');
     }
@@ -107,7 +104,5 @@ export const setSettings = asyncHandler(async (req, res) => {
 
 // Checks if an array has only numbers
 const onlyNumbers = (array) => {
-    return array.every((element) => {
-        return typeof element === 'number';
-    });
+    return array.every((elem) => !isNaN(parseInt(elem)));
 };

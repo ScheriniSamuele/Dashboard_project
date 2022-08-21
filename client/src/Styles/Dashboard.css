@@ -3,3 +3,56 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.dashboard-grid-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: 'graph graph''peak time-slots';
+    gap: 1rem;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.dashboard-box {
+    background-color: var(--blocks-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.dashboard-graph-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-graph-container {
+    grid-area: graph;
+}
+
+.dashboard-graph-box {
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+.dashboard-peak {
+    grid-area: peak;
+}
+
+.dashboard-usage {
+    grid-area: time-slots;
+}
+
+@media screen and (max-width : 992px) {
+    .dashboard-grid-content {
+        grid-template-columns: 1fr;
+        grid-template-areas: 'graph''peak''time-slots';
+    }
+
+
+}
+
+@media screen and (max-width : 600px) {
+    .dashboard-graph-controls {
+        flex-direction: column;
+    }
+}
