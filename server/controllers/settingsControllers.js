@@ -47,8 +47,10 @@ export const setSettings = asyncHandler(async (req, res) => {
         throw new Error('Please add all fields');
     }
 
+    const testPower = parseInt(power);
+
     // Check if power is a number
-    if (typeof power != 'number') {
+    if (typeof testPower != 'number') {
         res.status(400).json({ status: 'ko', errorMsg: 'Power must be a number' });
         throw new Error('Inserted power is not a number');
     }

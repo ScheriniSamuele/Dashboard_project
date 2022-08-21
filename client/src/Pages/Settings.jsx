@@ -21,14 +21,18 @@ const Settings = () => {
     const [errorMsg, setErrorMsg] = useState('');
 
     const settingsSchema = yup.object().shape({
-        power: yup.number().positive().required(),
+        power: yup.number().test(
+            'is-decimal',
+            'Power must be decimal',
+            value => (value + "").match(/^\d*\.{1}\d*$/),
+        ).positive().required(),
         inputPath: yup.string().required(),
         typology: yup.string().required(),
         costs: yup.array().min(1).required(),
     });
 
     useEffect(() => {
-        fetchUserSettings(); // si può mettere fuori  dallo use effect?
+        fetchUserSettings();
     }, []);
 
     const fetchUserSettings = () => {
