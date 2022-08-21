@@ -25,7 +25,7 @@ const Settings = () => {
             'is-decimal',
             'Power must be decimal',
             value => (value + "").match(/^\d*\.{1}\d*$/),
-        ),
+        ).positive().required(),
         inputPath: yup.string().required(),
         typology: yup.string().required(),
         costs: yup.array().min(1).required(),

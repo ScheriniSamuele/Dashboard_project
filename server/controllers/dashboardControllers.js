@@ -16,7 +16,7 @@ const path = join(__dirname, '../', filePath);
 const file = editJsonFile(path);
 
 const inputPath = file.get('inputPath');
-const maxPower = 3300;
+const maxPower = file.get('power');
 
 let data = [];
 let error = false;
