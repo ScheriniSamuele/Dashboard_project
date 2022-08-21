@@ -32,7 +32,7 @@ const Settings = () => {
     });
 
     useEffect(() => {
-        fetchUserSettings(); // si può mettere fuori  dallo use effect?
+        fetchUserSettings();
     }, []);
 
     const fetchUserSettings = () => {
