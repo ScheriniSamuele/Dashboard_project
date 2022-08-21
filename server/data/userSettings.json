@@ -1,9 +1,10 @@
 {
-  "inputPath": "./data/energy.csv",
+  "inputPath": "/Users/samuelescherini/Documents/energy.csv",
   "power": "3.3",
-  "typology": "double-slots",
+  "typology": "multi-slots",
   "costs": [
-    0.295,
-    0.242
+    "0.290",
+    "0.254",
+    "0.216"
   ]
 }
