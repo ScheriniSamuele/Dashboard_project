@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Select from 'react-select';
 import axios from 'axios';
+import { selectorStyles } from '../Helpers/Configurations';
 
 import '../Styles/Dashboard.css';
 
@@ -14,20 +16,8 @@ const Dashboard = () => {
     const [peakValue, setPeakValue] = useState({});
 
     useEffect(() => {
-        const query = process.env.REACT_APP_API_SERVER + 'dashboard/getData'; // Query string
-
-        axios
-            .get(query)
-            .catch((err) => {
-                if (err) {
-                    console.log(err);
-                }
-            })
-            .then((res) => {
-                setChartData(res.data.map((x) => x.watt));
-                setXlabels(res.data.map((x) => x.ora));
-                setPeakValue(res.data.fil);
-            });
+        const query = process.env.REACT_APP_API_SERVER + 'dashboard/last7days'; // Query string
+        fetchDashboardData(query);
     }, []);
 
     // Graph config
@@ -49,6 +39,41 @@ const Dashboard = () => {
         ],
     };
 
+    // Select config
+    let options = [
+        { label: 'Last 7 Days', value: 'Last 7 Days' },
+        { label: 'Last 30 Days', value: 'Last 30 Days' },
+    ];
+
+    const changeTimePeriod = (parameter) => {
+        setTimePeriod(parameter.value);
+        switch (parameter.value) {
+            case 'Last 7 Days':
+                fetchDashboardData(process.env.REACT_APP_API_SERVER + 'dashboard/last7days'); // Query string
+                break;
+            case 'Last 30 Days':
+                fetchDashboardData(process.env.REACT_APP_API_SERVER + 'dashboard/last30days');
+                break;
+            default:
+                console.log('should never reach this value');
+        }
+    };
+
+    const fetchDashboardData = (query) => {
+        axios
+            .get(query)
+            .catch((err) => {
+                if (err) {
+                    console.log(err);
+                }
+            })
+            .then((res) => {
+                setChartData(res.data.arrayData.map((x) => x.total));
+                setXlabels(res.data.arrayData.map((x) => x.data));
+                setPeakValue(res.data.peak);
+            });
+    };
+
     return (
         <motion.div className='dashboard-content' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ display: 'none' }}>
             <h1 className='section-title'>Dashboard</h1>
@@ -58,7 +83,7 @@ const Dashboard = () => {
                         <h2>
                             Enery Usage: <span className='dashboard-box dashboard-time-period-label'>{timePeriod}</span>
                         </h2>
-                        <input type='button' value={timePeriod} onClick={(e) => setTimePeriod(timePeriod)} />
+                        <Select styles={selectorStyles} className='input-select' options={options} onChange={changeTimePeriod} value={{ label: timePeriod, value: timePeriod }}></Select>
                     </div>
                     {<DashboardGraph chartData={data} />}
                 </div>

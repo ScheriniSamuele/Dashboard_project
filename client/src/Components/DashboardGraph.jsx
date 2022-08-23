@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS, Legend } from 'chart.js/auto';
 
@@ -9,6 +9,18 @@ const DashboardGraph = (props) => {
     const options = {
         fill: true,
         spanGaps: 10,
+        scales: {
+            y: {
+                ticks: {
+                    color: '#c9c7c7',
+                },
+            },
+            x: {
+                ticks: {
+                    color: '#c9c7c7',
+                },
+            },
+        },
         animation: {
             y: {
                 duration: 550,
@@ -27,7 +39,7 @@ const DashboardGraph = (props) => {
 
     return (
         <div className='dashboard-graph-box'>
-            <Line data={chartData} options={options} />
+            <Bar data={chartData} options={options} />
         </div>
     );
 };
