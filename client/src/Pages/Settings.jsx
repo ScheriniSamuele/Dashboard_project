@@ -79,9 +79,11 @@ const Settings = () => {
                     return;
                 }
             })
-            .then(() => {
-                setErrorMsg('');
-                alert('Settings uploaded correctly');
+            .then((res) => {
+                if(res){
+                    setErrorMsg('');
+                    alert('Settings uploaded correctly');
+                }
             });
     };
 
