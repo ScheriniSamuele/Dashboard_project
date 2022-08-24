@@ -1,0 +1,43 @@
+a {
+    color: #A6ACC9;
+    text-decoration: none;
+  }
+  
+li {
+    text-align:left;
+}
+
+li.active > a {
+    color: var(--purple-shade);
+}
+  
+li > a:hover {
+    color: var(--purple-shade);
+}
+
+h2, h3 {
+    padding-top: 16px;
+    margin-top: -16px;
+}
+
+nav {
+    width: 300px;
+    min-width: 300px;
+    padding: 16px;
+    margin: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    align-self: flex-start;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 48px;
+    max-height: calc(100vh - 70px);
+    overflow: auto;
+}
+  
+@media screen and (max-width: 900px) {
+    nav {
+      display: none;
+    }
+}
+  

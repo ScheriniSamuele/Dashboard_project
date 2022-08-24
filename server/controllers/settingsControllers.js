@@ -68,12 +68,7 @@ export const setSettings = asyncHandler(async (req, res) => {
         throw new Error('Selected invalid typology');
     }
 
-    // Check if the costs array contains inly numbers
-    if (!onlyNumbers(costs)) {
-        res.status(400).json({ status: 'ko', errorMsg: 'Costs must be only numbers' });
-        throw new Error('Inserted costs is not an array of numbers');
-    }
-
+    
     // Check if costs length is OK with chosen length
     if (typology === 'single-slot' && costs.length != 1) {
         res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
@@ -88,6 +83,12 @@ export const setSettings = asyncHandler(async (req, res) => {
     if (typology === 'multi-slots' && costs.length != 3) {
         res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
         throw new Error('Invalid input');
+    }
+    
+    // Check if the costs array contains inly numbers
+    if (!onlyNumbers(costs)) {
+        res.status(400).json({ status: 'ko', errorMsg: 'Costs must be only numbers' });
+        throw new Error('Inserted costs is not an array of numbers');
     }
 
     // Set new values and save them
