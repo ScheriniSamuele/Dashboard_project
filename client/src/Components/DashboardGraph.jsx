@@ -11,11 +11,21 @@ const DashboardGraph = (props) => {
         spanGaps: 10,
         scales: {
             y: {
+                title: {
+                    display: true,
+                    text: 'Watt',
+                    color: '#c9c7c7',
+                },
                 ticks: {
                     color: '#c9c7c7',
                 },
             },
             x: {
+                title: {
+                    display: true,
+                    text: 'Day',
+                    color: '#c9c7c7',
+                },
                 ticks: {
                     color: '#c9c7c7',
                 },

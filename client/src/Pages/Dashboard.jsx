@@ -81,9 +81,9 @@ const Dashboard = () => {
                 <div className='dashboard-box dashboard-graph-container'>
                     <div className='dashboard-graph-controls'>
                         <h2>
-                            Enery Usage: <span className='dashboard-box dashboard-time-period-label'>{timePeriod}</span>
+                            Enery Usage:<span className='dashboard-box dashboard-time-period-label'>{timePeriod}</span>
                         </h2>
-                        <Select styles={selectorStyles} className='input-select' options={options} onChange={changeTimePeriod} value={{ label: timePeriod, value: timePeriod }}></Select>
+                        <Select styles={selectorStyles} className='input-select-dashboard' options={options} onChange={changeTimePeriod} value={{ label: timePeriod, value: timePeriod }}></Select>
                     </div>
                     {<DashboardGraph chartData={data} />}
                 </div>

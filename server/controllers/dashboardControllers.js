@@ -7,7 +7,7 @@ import editJsonFile from 'edit-json-file';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import moment from 'moment';
-import { tidy, summarize, sum, groupBy, filter, mutate, sliceMax } from '@tidyjs/tidy';
+import { tidy, summarize, sum, groupBy, filter, mutate, sliceMax, median } from '@tidyjs/tidy';
 
 // DOTENV configuration, the filepath for User settings is stored as an Ambient Variable
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
@@ -51,10 +51,17 @@ export const getLast7days = asyncHandler(async (req, res) => {
 
             const arrayData = tidy(
                 data,
-                filter((record) => record.watt <= maxPower * 1.1),
+                /*filter((record) => record.watt <= maxPower * 1.1),
                 groupBy('data', [summarize({ total: sum('watt') })]),
 
                 mutate({ total: (record) => record.total / 24000 }),
+                mutate({ data: (record) => moment(record.data, 'MM-DD-YY') }),
+                filter((record) => record.data.isAfter(firstDate)),
+                mutate({ data: (record) => record.data.format('DD/MM') })*/
+
+                filter((record) => record.watt <= maxPower * 1.1),
+                mutate({ watt: (record) => record.watt * 0.005 }),
+                groupBy('data', [summarize({ total: sum('watt') })]),
                 mutate({ data: (record) => moment(record.data, 'MM-DD-YY') }),
                 filter((record) => record.data.isAfter(firstDate)),
                 mutate({ data: (record) => record.data.format('DD/MM') })
@@ -80,15 +87,32 @@ export const getLast30days = asyncHandler(async (req, res) => {
             const firstDate = moment(lastDate);
             firstDate.subtract(31, 'days');
 
+            // 18/3600 is the number of seconds a record is captured and 3600 is the number of seconds in 1h
+            const parse = 18 / 3600;
+
             const arrayData = tidy(
                 data,
-                filter((record) => record.watt <= maxPower * 1.1),
+                /*filter((record) => record.watt <= maxPower * 1.1),
                 groupBy('data', [summarize({ total: sum('watt') })]),
 
                 mutate({ total: (record) => record.total / 24000 }),
                 mutate({ data: (record) => moment(record.data, 'MM-DD-YY') }),
                 filter((record) => record.data.isAfter(firstDate)),
+                mutate({ data: (record) => record.data.format('DD/MM') })*/
+
+                filter((record) => record.watt <= maxPower * 1.1),
+                mutate({ watt: (record) => (record.watt / 3600) * 18 }),
+                groupBy('data', [summarize({ total: sum('watt') })]),
+                mutate({ data: (record) => moment(record.data, 'MM-DD-YY') }),
+                filter((record) => record.data.isAfter(firstDate)),
                 mutate({ data: (record) => record.data.format('DD/MM') })
+
+                /*filter((record) => record.watt <= maxPower * 1.1),
+                mutate({ watt: (record) => record.watt * 24 }),
+                groupBy('data', [summarize({ total: median('watt') })]),
+                mutate({ data: (record) => moment(record.data, 'MM-DD-YY') }),
+                filter((record) => record.data.isAfter(firstDate)),
+                mutate({ data: (record) => record.data.format('DD/MM') })*/
             );
 
             const peakValue = tidy(arrayData, sliceMax(1, 'total'), mutate({ total: (record) => Number(record.total).toFixed(3) }))[0];
