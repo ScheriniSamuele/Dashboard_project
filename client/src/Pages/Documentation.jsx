@@ -43,7 +43,8 @@ const Documentation = () => {
             <img className='contract-img' src={contract} alt='Contract typology' />
             <p className='documentation-info'>
                 The user has to select with type of contract he has, there are three possibilities: 
-                    <ul>
+            </p>
+            <ul>
                         <li className='slot-list'>
                             single-slot, with an unique cost (F1)
                         </li>
@@ -59,7 +60,6 @@ const Documentation = () => {
                     </ul> 
                     By selecting a typology and clicking the INFO button you can get more infos related to the selected typology
                     <br/><br/><br/>  
-            </p>
             <hr/><br/><br/><br/>   
             <h3 id="costs-header">Slot's cost input</h3>
             <img className='contract-img' src={costs} alt='Cost for each slot' />
