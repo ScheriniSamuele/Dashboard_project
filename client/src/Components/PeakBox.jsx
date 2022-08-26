@@ -13,7 +13,7 @@ const PeakBox = (props) => {
             </span>
             -on-
             <span>
-                Day: <span className='peak-data'>{peakValue.data}</span>
+                When: <span className='peak-data'>{peakValue.data}</span>
             </span>
         </div>
     );

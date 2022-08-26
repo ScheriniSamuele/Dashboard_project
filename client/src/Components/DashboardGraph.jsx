@@ -1,10 +1,14 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS, Legend } from 'chart.js/auto';
 
 const DashboardGraph = (props) => {
-    const { chartData } = props;
+    const { chartData, chartType } = props;
+
+    const renderGraph = () => {
+        return chartType === 'bar' ? <Bar data={chartData} options={options} /> : <Line data={chartData} options={options} />;
+    };
 
     const options = {
         fill: true,
@@ -23,11 +27,12 @@ const DashboardGraph = (props) => {
             x: {
                 title: {
                     display: true,
-                    text: 'Day',
+                    text: 'Time',
                     color: '#c9c7c7',
                 },
                 ticks: {
                     color: '#c9c7c7',
+                    maxTicksLimit: 15,
                 },
             },
         },
@@ -47,11 +52,7 @@ const DashboardGraph = (props) => {
         },
     };
 
-    return (
-        <div className='dashboard-graph-box'>
-            <Bar data={chartData} options={options} />
-        </div>
-    );
+    return <div className='dashboard-graph-box'>{renderGraph()}</div>;
 };
 
 export default DashboardGraph;

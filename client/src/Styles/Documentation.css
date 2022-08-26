@@ -12,9 +12,12 @@
 .slot-list {
     text-align: flex-start;
 }
-h2 {
+
+/*!!!!!!!FIX: Cant use h2 and elements for style because they will be applied on all react pages!!!!!!!*/
+
+/*h2 {
     font-size: 32px;
-}
+}*/
 
 h3 {
     font-size: 26px;
@@ -60,8 +63,6 @@ main {
 
 hr {
     color: var(--grey-shade);
-    margin-left:0;
+    margin-left: 0;
     width: 80%;
 }
-
- 
