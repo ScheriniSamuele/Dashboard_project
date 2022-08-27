@@ -53,7 +53,33 @@ export const getLast24h = asyncHandler(async (req, res) => {
             mutate({ data: (record) => record.data + '/' + record.ora.slice(0, 4) }),
             groupBy(['data'], [summarize({ total: median('watt') })]),
             filter((record) => moment(record.data, 'MM-DD-YY-hh:mm').isAfter(firstDateHour)),
-            mutate({ data: (record) => moment(record.data + '0', 'hh:mma').format('hh:mma') })
+            mutate({ data: (record) => (record.data + '0').slice(9) })
+        );
+
+        const peakValue = tidy(arrayData, sliceMax(1, 'total'), mutate({ total: (record) => Number(record.total).toFixed(3) }))[0];
+        res.status(200).json({ arrayData: arrayData, peak: peakValue, graphType: 'bar' });
+    });
+});
+
+// @route /api/dashboard/getLast72h
+// @desc Get the user data for the dashboard for the last 72 hours
+export const getLast72h = asyncHandler(async (req, res) => {
+    fs.access(inputPath, (err) => {
+        if (err) {
+            res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
+            return;
+        }
+        const lastRecord = data[data.length - 1];
+        const lastDateHour = moment(lastRecord.data + '/' + lastRecord.ora, 'MM-DD-YY-hh:mm');
+        const firstDateHour = moment(lastDateHour);
+        firstDateHour.subtract(72, 'hours');
+        const arrayData = tidy(
+            data,
+            filter((record) => record.watt <= maxPower * 1.1),
+            mutate({ data: (record) => record.data + '/' + record.ora.slice(0, 3) }),
+            groupBy(['data'], [summarize({ total: median('watt') })]),
+            filter((record) => moment(record.data, 'MM-DD-YY-hh:mm').isAfter(firstDateHour)),
+            mutate({ data: (record) => record.data + '00' })
         );
 
         const peakValue = tidy(arrayData, sliceMax(1, 'total'), mutate({ total: (record) => Number(record.total).toFixed(3) }))[0];

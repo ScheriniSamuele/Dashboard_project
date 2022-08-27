@@ -3,11 +3,14 @@ import { motion } from 'framer-motion';
 import Select from 'react-select';
 import axios from 'axios';
 import { selectorStyles } from '../Helpers/Configurations';
+import Loader from 'react-spinners/MoonLoader';
 
 import '../Styles/Dashboard.css';
 
 import DashboardGraph from '../Components/DashboardGraph';
 import PeakBox from '../Components/PeakBox';
+import TimeSlotsBox from '../Components/TimeSlotsBox';
+import BackToSettings from '../Components/BackToSettings';
 
 const Dashboard = () => {
     const [timePeriod, setTimePeriod] = useState('Last 7 days');
@@ -16,6 +19,7 @@ const Dashboard = () => {
     const [peakValue, setPeakValue] = useState({});
     const [chartType, setChartType] = useState('bar');
     const [chartDataErr, setChartDataErr] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const query = process.env.REACT_APP_API_SERVER + 'dashboard/last7days'; // Query string
@@ -29,7 +33,6 @@ const Dashboard = () => {
             {
                 data: chartData,
                 borderColor: '#ffb849',
-                lineTension: 0.2,
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const area = context.chart.chartArea;
@@ -47,15 +50,25 @@ const Dashboard = () => {
     // Select config
     let options = [
         { label: 'Last 24 Hours', value: 'Last 24 Hours' },
+        { label: 'Last 72 Hours', value: 'Last 72 Hours' },
         { label: 'Last 7 Days', value: 'Last 7 Days' },
         { label: 'Last 30 Days', value: 'Last 30 Days' },
     ];
+
+    // Spinner settings
+    const override = {
+        display: 'block',
+        margin: '5rem auto',
+    };
 
     const changeTimePeriod = (parameter) => {
         setTimePeriod(parameter.value);
         switch (parameter.value) {
             case 'Last 24 Hours':
                 fetchDashboardData(process.env.REACT_APP_API_SERVER + 'dashboard/last24h');
+                break;
+            case 'Last 72 Hours':
+                fetchDashboardData(process.env.REACT_APP_API_SERVER + 'dashboard/last72h');
                 break;
             case 'Last 7 Days':
                 fetchDashboardData(process.env.REACT_APP_API_SERVER + 'dashboard/last7days'); // Query string
@@ -69,13 +82,15 @@ const Dashboard = () => {
     };
 
     const fetchDashboardData = async (query) => {
+        setLoading(true);
         const response = await axios.get(query).catch((err) => {
             if (err) {
                 setChartDataErr(true);
+                setLoading(false);
             }
         });
-
         const data = await response.data;
+        if (data) setLoading(false);
         setChartData(data.arrayData.map((x) => x.total));
         setXlabels(data.arrayData.map((x) => x.data));
         setPeakValue(data.peak);
@@ -95,13 +110,11 @@ const Dashboard = () => {
                     </div>
                     {
                         // add back to settings component
-                        !chartDataErr ? <DashboardGraph chartData={data} chartType={chartType} /> : 'Errore, cambia il file'
+                        loading ? <Loader speedMultiplier={0.8} loading={loading} color={'#A8A8A8'} cssOverride={override} size={100} /> : !chartDataErr ? <DashboardGraph chartData={data} chartType={chartType} /> : <BackToSettings />
                     }
                 </div>
                 <PeakBox timePeriod={timePeriod} peakValue={peakValue} />
-                <div className='dashboard-box dashboard-usage'>
-                    <h2>Energy usage based on Time slots: {timePeriod}</h2>
-                </div>
+                <TimeSlotsBox timePeriod={timePeriod} />
             </div>
         </motion.div>
     );

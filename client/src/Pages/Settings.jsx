@@ -9,6 +9,7 @@ import InputCosts from '../Components/InputCosts';
 import InputPower from '../Components/InputPower';
 import InputPath from '../Components/InputPath';
 import Popup from '../Components/Popup';
+//import SentUpdate from '../Components/SentUpdate';
 
 import '../Styles/Settings.css';
 

@@ -152,6 +152,24 @@
     justify-content: flex-end;
 }
 
+.sent-update-box {
+    position: absolute;
+    bottom: 5rem;
+    left: 0;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sent-update-container {
+    background: var(--yellow-shade);
+    padding: 15px 35px;
+    border-radius: 15px;
+    color: black;
+    box-shadow: 1px 1px var(--grey-shade);
+}
 
 @media only screen and (max-width: 1200px) {
 
