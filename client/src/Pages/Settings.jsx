@@ -21,10 +21,7 @@ const Settings = () => {
     const [errorMsg, setErrorMsg] = useState('');
 
     const settingsSchema = yup.object().shape({
-        power: yup
-            .number()
-            .test('is-decimal', 'Power must be decimal', (value) => (value + '').match(/^\d*\.{1}\d*$/))
-            .required(),
+        power: yup.number().required(),
         inputPath: yup.string().required(),
         typology: yup.string().required(),
         costs: yup.array().min(1).required(),
@@ -60,8 +57,6 @@ const Settings = () => {
             costs: userCosts,
         };
 
-        console.log(userSettings);
-
         try {
             await settingsSchema.validate(userSettings); // Yup validate userSettings based on schema
         } catch (error) {
@@ -80,7 +75,7 @@ const Settings = () => {
                 }
             })
             .then((res) => {
-                if(res){
+                if (res) {
                     setErrorMsg('');
                     alert('Settings uploaded correctly');
                 }

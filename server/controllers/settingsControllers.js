@@ -8,6 +8,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 import { typology_enum } from '../data/enums.js';
+import { syncFile } from './dashboardControllers.js';
 
 // DOTENV configuration, the filepath for User settings is stored as an Ambient Variable
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
@@ -68,7 +69,6 @@ export const setSettings = asyncHandler(async (req, res) => {
         throw new Error('Selected invalid typology');
     }
 
-    
     // Check if costs length is OK with chosen length
     if (typology === 'single-slot' && costs.length != 1) {
         res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
@@ -84,7 +84,7 @@ export const setSettings = asyncHandler(async (req, res) => {
         res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
         throw new Error('Invalid input');
     }
-    
+
     // Check if the costs array contains inly numbers
     if (!onlyNumbers(costs)) {
         res.status(400).json({ status: 'ko', errorMsg: 'Costs must be only numbers' });

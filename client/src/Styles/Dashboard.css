@@ -9,9 +9,10 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 2fr 1fr;
     grid-template-areas: 'graph graph''peak time-slots';
-    gap: 1rem;
+    gap: 1.2rem;
     position: relative;
     margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .dashboard-box {
@@ -23,6 +24,20 @@
 .dashboard-graph-controls {
     display: flex;
     justify-content: space-between;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-time-period-label {
+    color: var(--purple-shade);
+    background: transparent;
+}
+
+.input-select-dashboard {
+    width: 15rem;
+    height: 40px;
+    border: 2px solid;
+    border-radius: 0.5rem;
 }
 
 .dashboard-graph-container {
@@ -30,12 +45,30 @@
 }
 
 .dashboard-graph-box {
-    width: 95%;
-    margin-left: 2.5%;
+    width: 98%;
+    margin: 1%;
 }
 
 .dashboard-peak {
     grid-area: peak;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.2rem;
+}
+
+.peak-data {
+    font-size: 2rem;
+    color: var(--red-shade);
+    font-weight: 600;
+}
+
+.peak-date {
+    font-size: 2rem;
+    color: var(--yellow-shade);
+    font-weight: 600;
+
 }
 
 .dashboard-usage {
@@ -45,10 +78,9 @@
 @media screen and (max-width : 992px) {
     .dashboard-grid-content {
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr min(1fr, 120px) 1fr;
         grid-template-areas: 'graph''peak''time-slots';
     }
-
-
 }
 
 @media screen and (max-width : 600px) {
