@@ -1,6 +1,6 @@
 {
   "inputPath": "/Users/samuelescherini/Documents/energy.csv",
-  "power": "6",
+  "power": "3",
   "typology": "multi-slots",
   "costs": [
     "0.298",

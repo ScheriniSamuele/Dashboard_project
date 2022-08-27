@@ -27,16 +27,19 @@ Abbiamo deciso di realizzare una WebApp utilizzando JavaScript sia come linguagg
 | **DotEnv**        | Libreria che permette la creazione e l'utilizzo di variabili d'ambiente.          |
 | **Fs**            | Libreria che permette la gestione del file system.                                |
 | **EditJsonFiles** | Libreria che permette l'update semplificato di file .json.                        |
+| **Tidyjs**        | Libreria che permette il trattamento semplificato di dati aggregati.              |
+| **Moment**        | Libreria che permette una migliore gestione delle date.                           |
 
 ### Client
 
-| Libreria          | Descrizione                                                                |
-| ----------------- | -------------------------------------------------------------------------- |
-| **React**         | Framework lato front-end per la realizzazione di single page applications. |
-| **Axios**         | Libreria utile per l'utilizzio delle API realizzate lato back-end.         |
-| **Framer-Motion** | Libreria utilizzata per realizzare animazioni e transizioni.               |
-| **Yup**           | Libreria utilizzata per la validazione di form lato client.                |
-| **Chartjs**       | Libreria utilizzata per la validazione grafica dei dati.                   |
+| Libreria           | Descrizione                                                                |
+| ------------------ | -------------------------------------------------------------------------- |
+| **React**          | Framework lato front-end per la realizzazione di single page applications. |
+| **Axios**          | Libreria utile per l'utilizzio delle API realizzate lato back-end.         |
+| **Framer-Motion**  | Libreria utilizzata per realizzare animazioni e transizioni.               |
+| **Yup**            | Libreria utilizzata per la validazione di form lato client.                |
+| **Chartjs**        | Libreria utilizzata per la visualizzazione grafica dei dati.               |
+| **React-spinners** | Libreria utilizzata per i loading screens                                  |
 
 ## Struttura delle cartelle
 
