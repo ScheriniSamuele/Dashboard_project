@@ -97,7 +97,7 @@ export const setSettings = asyncHandler(async (req, res) => {
     file.set('typology', typology);
     file.set('costs', costs);
     file.save();
-
+    syncFile();
     res.status(200).json({ message: 'ok, everything done' });
 });
 
