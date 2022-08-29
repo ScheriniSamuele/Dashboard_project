@@ -1,5 +1,5 @@
 {
-  "inputPath": "/Users/samuelescherini/Documents/energy.csv",
+  "inputPath": "/Users/arbid/Documents/energy.csv",
   "power": "3",
   "typology": "multi-slots",
   "costs": [
