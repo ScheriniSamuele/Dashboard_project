@@ -57,6 +57,17 @@ html {
     padding: 0.3rem 0.2rem;
 }
 
+.purpleText {
+    color: var(--purple-shade);
+}
+
+.yellowText {
+    color: var(--yellow-shade);
+}
+
+.redText {
+    color: var(--red-shade);
+}
 
 @media only screen and (max-width: 1200px) {
     .user-main-content {

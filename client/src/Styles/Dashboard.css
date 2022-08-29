@@ -87,8 +87,6 @@
     transition: all 0.3s ease-in-out;
 }
 
-
-
 .dashboard-peak {
     grid-area: peak;
     text-align: center;
@@ -117,7 +115,12 @@
     display: flex;
     flex-direction: column;
     font-size: 1.2rem;
-    justify-content: space-arounds;
+    justify-content: space-around;
+}
+
+.dashboard-usage-text {
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 

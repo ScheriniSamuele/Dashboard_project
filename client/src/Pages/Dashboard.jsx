@@ -17,12 +17,13 @@ const Dashboard = () => {
     const [xLabels, setXlabels] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [peakValue, setPeakValue] = useState({});
+    const [timeSlotsData, setTimeSlotsData] = useState({});
     const [chartType, setChartType] = useState('bar');
     const [chartDataErr, setChartDataErr] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const query = process.env.REACT_APP_API_SERVER + 'dashboard/last7days'; // Query string
+        const query = process.env.REACT_APP_API_SERVER + 'dashboard/last7Days'; // Query string
         fetchDashboardData(query);
     }, []);
 
@@ -93,6 +94,7 @@ const Dashboard = () => {
         if (data) setLoading(false);
         setChartData(data.arrayData.map((x) => x.total));
         setXlabels(data.arrayData.map((x) => x.data));
+        setTimeSlotsData(data.timeSlotsData);
         setPeakValue(data.peak);
         setChartType(data.graphType);
     };
@@ -114,7 +116,7 @@ const Dashboard = () => {
                     }
                 </div>
                 <PeakBox timePeriod={timePeriod} peakValue={peakValue} />
-                <TimeSlotsBox timePeriod={timePeriod} />
+                <TimeSlotsBox timePeriod={timePeriod} timeSlotsData={timeSlotsData} />
             </div>
         </motion.div>
     );
