@@ -53,6 +53,7 @@ e navigazione del codice sorgente.
 | **routes**      | Contiene le routes del progetto con relative funzioni get e post. |
 | **models**      | Contiene le entità presenti lato DB e il loro schema.             |
 | **controllers** | Contiene le funzioni chiamate dalle routes.                       |
+| **helpers**     | Contiene generiche funzioni utili in vari punti del codice        |
 
 ### Client
 
