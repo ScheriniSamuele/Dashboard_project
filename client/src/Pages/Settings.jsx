@@ -25,7 +25,7 @@ const Settings = () => {
         power: yup.number().required(),
         inputPath: yup.string().required(),
         typology: yup.string().required(),
-        costs: yup.array().min(1).required(),
+        costs: yup.array().of(yup.number()).min(1).required(),
     });
 
     useEffect(() => {
@@ -103,7 +103,6 @@ const Settings = () => {
                     <Icon icon='el:upload' className='settings-update-button' />
                 </div>
             </form>
-
             <div className='settings-error-msg'>{errorMsg}</div>
         </motion.div>
     );

@@ -230,14 +230,16 @@ export const syncFile = asyncHandler(async (req, res) => {
 
 //----Helpers------
 
-export const calcTimeSlotsValues = (parsedData) => {
+export const calcTimeSlotsValues = (parsedData, typology) => {
     dotenv.config({ silent: process.env.NODE_ENV === 'production' });
     // FilePath for updating user settings
     const filePath = process.env.SETTINGS_FILE;
     const __dirname = dirname(fileURLToPath(import.meta.url));
+    const path = join(__dirname, '../', filePath);
+
     const file = editJsonFile(path);
 
-    const contract = file.get('typology');
+    const contract = typology || file.get('typology');
 
     switch (contract) {
         case 'single-slot':
@@ -245,7 +247,7 @@ export const calcTimeSlotsValues = (parsedData) => {
                 parsedData,
                 mutate({ ora: (record) => record.data.slice(9) }),
                 mutate({ data: (record) => moment(record.data, 'MM-DD-YY').format('dddd') }),
-                debug('test', { limit: 999 }),
+                debug('test', { limit: 5 }),
                 summarize({
                     total: sum('total'),
                 })
@@ -256,7 +258,7 @@ export const calcTimeSlotsValues = (parsedData) => {
                 mutate({
                     data: (record) => moment(record.data, 'MM-DD-YY').format('dddd') + '/' + record.data.slice(9),
                 }),
-                debug('test', { limit: 999 }),
+                debug('test', { limit: 5 }),
                 summarize({
                     F1: sum('total', {
                         predicate: (x) => F1Combinations.includes(x.data),
@@ -273,7 +275,7 @@ export const calcTimeSlotsValues = (parsedData) => {
                 mutate({
                     data: (record) => moment(record.data, 'MM-DD-YY').format('dddd') + '/' + record.data.slice(9),
                 }),
-                debug('test', { limit: 999 }),
+                debug('test', { limit: 5 }),
                 summarize({
                     F1: sum('total', {
                         predicate: (x) => F1Combinations.includes(x.data),
