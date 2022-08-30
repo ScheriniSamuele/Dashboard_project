@@ -5,7 +5,13 @@ import settings from '../Images/settings.png';
 import power from '../Images/power.png';
 import path from '../Images/path.png';
 import costs from '../Images/costs.png';
+import chart30days from '../Images/chart30days.png';
+import chart7days from '../Images/chart7days.png';
+import chart24hours from '../Images/chart24hours.png';
+import peakdash from '../Images/peakdash.png';
+import timeslotsdash from '../Images/timeslotsdash.png';
 import contract from '../Images/contract.png';
+
 import '../Styles/Documentation.css';
 
 const Documentation = () => {
@@ -15,14 +21,57 @@ const Documentation = () => {
         <motion.div className='documentation-content' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ display: 'none' }}>
         <div className="container">
         <main>
-        <h2 id="settings-header" className='section-subtitle'>Settings</h2>
-            <img src={settings} className='settings-img' alt='Settings page' />
+        <h2 id="dashboard-header" className='documentation-title'>Dashboard</h2>
+            The dashboard page makes the user visualize infos about his consumption <br/>
+            <br/>
+            <h3 id="chart-header" className='documentation-subtitle'>Chart</h3>
+            The user can choose three range of time the chart will show: 
+            <ul>
+                <li>
+                    Energy consumption in the last 30 days
+                    <br/><br/>
+                    <img src={chart30days} className='doc-img' alt='30 days' />
+                    <br/><br/>
+                </li>
+
+                <li>
+                    Energy consumption in the last 7 days
+                    <br/><br/>
+                    <img src={chart7days} className='doc-img' alt='7 days' />
+                    <br/><br/>
+                </li>
+
+                <li>
+                    Energy consumption in the last 24 hours
+                    <br/><br/>
+                    <img src={chart24hours} className='doc-img' alt='24 hours' />
+                    <br/><br/>
+                </li>
+            </ul>
+            <br/><br/>
+            <hr/>
+            <br/><br/>
+            <h3 id="peak-header" className='documentation-subtitle'>Energy peak</h3>
+            <img src={peakdash} className='medium-img' alt='Energy peak' />
+            <br />
+            This section show the energy peak in the selected range of time and when it was
+            <br/><br/>
+            <hr/>
+            <br/><br/>
+            <h3 id="timeslots-header" className='documentation-subtitle'>Energy based on time slots</h3>
+            <img src={timeslotsdash} className='medium-img' alt='Energy based on time slots' />
+                <br/>
+                This sections shows the energy consumption grouped by time slot
+                <br/><br/><br/>
+        <h2 id="settings-header" className='documentation-title'>Settings</h2>
+            <img src={settings} className='doc-img' alt='Settings page' />
             <p className='documentation-info'>
+                <br/>
                 The settings page is used to upload the user's settings: the daily available power, the path of the csv file, the contract's typology and the cost for each slot
                 <br/><br/><br/>
             </p>
             <hr/><br/><br/><br/>
-            <h3 id="power-header">Available power input</h3>
+            <h3 id="power-header" className='documentation-subtitle'>Available power input</h3>
             <br />
             <img className='power-img' src={power} alt='Daily available power'  />
             <p className='documentation-info'>
@@ -30,7 +79,7 @@ const Documentation = () => {
                 <br/><br/><br/>
             </p>
             <hr/><br/><br/><br/>
-            <h3 id="path-header">Path input</h3>
+            <h3 id="path-header" className='documentation-subtitle'>Path input</h3>
             <br/>
             <img className='path-img' src={path} alt='Path of the csv file' />
             <p className='documentation-info'>
@@ -38,9 +87,9 @@ const Documentation = () => {
                 <br/><br/><br/>
             </p>
             <hr/><br/><br/><br/>
-            <h3 id="contract-header">Contract's typology input</h3>
+            <h3 id="contract-header" className='documentation-subtitle'>Contract's typology input</h3>
             <br/>
-            <img className='contract-img' src={contract} alt='Contract typology' />
+            <img className='doc-img' src={contract} alt='Contract typology' />
             <p className='documentation-info'>
                 The user has to select with type of contract he has, there are three possibilities: 
             </p>
@@ -61,7 +110,7 @@ const Documentation = () => {
                     By selecting a typology and clicking the INFO button you can get more infos related to the selected typology
                     <br/><br/><br/>  
             <hr/><br/><br/><br/>   
-            <h3 id="costs-header">Slot's cost input</h3>
+            <h3 id="costs-header" className='documentation-subtitle'>Slot's cost input</h3>
             <img className='contract-img' src={costs} alt='Cost for each slot' />
             <p className='documentation-info'>
                 The user has to insert the cost for each slot, based on the contract typology selected

@@ -117,6 +117,7 @@ export const getLast7days = asyncHandler(async (req, res) => {
             res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
             return;
         }
+
         const lastDay = data[data.length - 1].data;
 
         const lastDate = moment(lastDay, 'MM-DD-YY');
@@ -229,7 +230,7 @@ export const syncFile = asyncHandler(async (req, res) => {
 
 //----Helpers------
 
-const calcTimeSlotsValues = (parsedData) => {
+export const calcTimeSlotsValues = (parsedData) => {
     dotenv.config({ silent: process.env.NODE_ENV === 'production' });
     // FilePath for updating user settings
     const filePath = process.env.SETTINGS_FILE;
@@ -237,7 +238,6 @@ const calcTimeSlotsValues = (parsedData) => {
     const file = editJsonFile(path);
 
     const contract = file.get('typology');
-    console.log(contract);
 
     switch (contract) {
         case 'single-slot':
