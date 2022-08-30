@@ -3,3 +3,112 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.cost-flex-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cost-column {
+    background-color: var(--blocks-color);
+    border-radius: 15px;
+    height: 70vh;
+    width: 29%;
+    margin: 1rem 1rem;
+}
+
+.cost-column-title {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.2rem;
+}
+
+.cost-column-values {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cost-column-value {
+    display: flex;
+    flex-direction: column;
+}
+
+.cost-column-values-label {
+    color: var(--grey-shade);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.cost-column-value-box {
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 2px solid var(--grey-shade);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.cost-information-label {
+    color: var(--grey-shade);
+    margin-top: 1rem;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.cost-column-compare {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.cost-input-select {
+    width: 15rem;
+    height: 40px;
+    border: 2px solid;
+    border-radius: 0.5rem;
+}
+
+.cost-input-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cost-input-form div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
+.cost-input-button {
+    background: var(--purple-shade);
+    padding: 1rem 5rem;
+    border: 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.cost-text-bottom {
+    text-align: center;
+}
+
+@media only screen and (max-width: 1350px) {
+    .cost-column {
+        min-width: 80%;
+    }
+
+    .cost-column-value {
+        width: 60%;
+    }
+}

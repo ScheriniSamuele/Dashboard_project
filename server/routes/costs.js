@@ -4,6 +4,6 @@ import { getCosts } from '../controllers/costControllers.js';
 
 const router = express.Router();
 
-router.get('/getCosts', getCosts);
+router.post('/getCosts', getCosts);
 
 export default router;

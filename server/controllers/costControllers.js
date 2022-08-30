@@ -11,6 +11,8 @@ import * as fs from 'fs';
 import CSVtoJSON from 'csvtojson';
 import { tidy, summarize, sum, groupBy, filter, mutate, median } from '@tidyjs/tidy';
 
+import { onlyNumbers } from '../Helpers/validation.js';
+
 // DOTENV configuration, the filepath for User settings is stored as an Ambient Variable
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 // FilePath for updating user settings
@@ -35,7 +37,6 @@ fs.access(inputPath, (err) => {
     }
 });
 
-
 //------------Controllers--------------------
 
 // @route /api/cost/getCosts
@@ -47,13 +48,40 @@ export const getCosts = asyncHandler(async (req, res) => {
             return;
         }
 
-        let {costs} = req.body;
+        let costs = null;
+        let contract = null;
 
-        if(costs == null){
+        // If req.body is not empty
+        if (Object.keys(req.body).length !== 0) {
+            costs = req.body.costs.map((el) => Number(el));
+            if (!onlyNumbers(costs)) {
+                res.status(400).json({ status: 'ko', errorMsg: 'Costs must be only numbers' });
+                return;
+            }
+
+            contract = req.body.typology;
+            // Check if costs length is OK with chosen length
+            if (contract === 'single-slot' && costs.length < 1) {
+                res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
+                return;
+            }
+
+            if (contract === 'double-slots' && costs.length < 2) {
+                res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
+                return;
+            }
+
+            if (contract === 'multi-slots' && costs.length < 3) {
+                res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
+                return;
+            }
+        }
+
+        if (costs == null) {
             costs = file.get('costs');
-        } 
-        
-        const contract = file.get('typology');
+            contract = file.get('typology');
+        }
+
         let monthlyCost = 0;
         let dailyCost = 0;
         let annualCost = 0;
@@ -84,21 +112,37 @@ export const getCosts = asyncHandler(async (req, res) => {
             mutate({ data: (record) => record.data + '00' })
         );
 
-        const timeSlotsData = calcTimeSlotsValues(parsedData);
-        
+        const timeSlotsData = calcTimeSlotsValues(parsedData, contract);
+
+        let flag = false;
+
         switch (contract) {
             case 'single-slot': {
-                monthlyCost = (timeSlotsData[0].F1/1000 * costs[0]);
+                console.log('sono qua 1');
+                console.log(timeSlotsData);
+
+                monthlyCost = (timeSlotsData[0].total / 1000) * costs[0];
+                break;
             }
             case 'double-slots': {
-                monthlyCost = (timeSlotsData[0].F1/1000 * costs[0] + timeSlotsData[0].F23/1000 * costs[1]);
+                console.log('sono qua 2');
+                console.log(timeSlotsData);
+
+                monthlyCost = (timeSlotsData[0].F1 / 1000) * costs[0] + (timeSlotsData[0].F23 / 1000) * costs[1];
+                break;
             }
             case 'multi-slots': {
-                monthlyCost = (timeSlotsData[0].F1/1000 * costs[0] + timeSlotsData[0].F2/1000 * costs[1] + timeSlotsData[0].F3/1000 * costs[2]); 
+                console.log('sono qua 3');
+                console.log(timeSlotsData);
+                monthlyCost = (timeSlotsData[0].F1 / 1000) * costs[0] + (timeSlotsData[0].F2 / 1000) * costs[1] + (timeSlotsData[0].F3 / 1000) * costs[2];
+                break;
             }
+            default:
+                flag = true;
+                break;
         }
 
-        if(monthlyCost == 0) {
+        if (flag === true) {
             res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
             return;
         }
@@ -110,10 +154,11 @@ export const getCosts = asyncHandler(async (req, res) => {
             dailyCost: dailyCost,
             monthlyCost: monthlyCost,
             annualCost: annualCost,
-        }
+        };
 
         const response = averageCosts;
+        console.log('res:', response);
+
         res.status(200).json(response);
     });
-
 });

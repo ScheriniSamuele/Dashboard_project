@@ -10,6 +10,8 @@ import { fileURLToPath } from 'url';
 import { typology_enum } from '../data/enums.js';
 import { syncFile } from './dashboardControllers.js';
 
+import { onlyNumbers } from '../Helpers/validation.js';
+
 // DOTENV configuration, the filepath for User settings is stored as an Ambient Variable
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 // FilePath for updating user settings
@@ -100,10 +102,3 @@ export const setSettings = asyncHandler(async (req, res) => {
     syncFile();
     res.status(200).json({ message: 'ok, everything done' });
 });
-
-//------------Helper functions--------------------
-
-// Checks if an array has only numbers
-const onlyNumbers = (array) => {
-    return array.every((elem) => !isNaN(parseInt(elem)));
-};
