@@ -1,10 +1,6 @@
 {
-  "inputPath": "/Users/arbid/Documents/energy.csv",
-  "power": "3",
-  "typology": "multi-slots",
-  "costs": [
-    "0.298",
-    "0.24",
-    "0.32"
-  ]
+    "inputPath": "",
+    "power": "",
+    "typology": "multi-slots",
+    "costs": ["", "", ""]
 }
