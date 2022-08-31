@@ -24,7 +24,30 @@ const DoughnutChart = (props) => {
   const showLabels = () => {
       const labels = chartData.labels;
 
-      return labels.map((label) => <li key={label}> {label} </li>);
+      const style = [{
+        backgroundColor: '#B098FF',
+        width: '1.1rem',
+        height: '1.1rem',
+        display: 'inline-block',
+        borderRadius: '100%',
+      },
+      {
+        backgroundColor: '#FCFF6F',
+        width: '1.1rem',
+        height: '1.1rem',
+        display: 'inline-block',
+        borderRadius: '100%',
+      },
+      {
+        backgroundColor: '#F16D6D',
+        width: '1.1rem',
+        height: '1.1rem',
+        display: 'inline-block',
+        borderRadius: '100%',
+      },
+    ];
+
+      return labels.map((label, index) => (<li key={label}> {label}  <span style={style[index]}></span> </li>));
   };
 
   return (
