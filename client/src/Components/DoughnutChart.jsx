@@ -23,6 +23,7 @@ const DoughnutChart = (props) => {
 
   const showLabels = () => {
       const labels = chartData.labels;
+
       return labels.map((label) => <li key={label}> {label} </li>);
   };
 

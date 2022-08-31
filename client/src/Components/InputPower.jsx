@@ -5,7 +5,7 @@ const InputPower = (props) => {
 
     return (
         <div className='settings-input-power'>
-            <label className='input-label'>Available power (daily)</label>
+            <label className='input-label'>Available power (KW)</label>
             <input className='text-input settings-input-power-box' type='text' name='power' value={power} onChange={(e) => setPower(e.target.value)} />
         </div>
     );

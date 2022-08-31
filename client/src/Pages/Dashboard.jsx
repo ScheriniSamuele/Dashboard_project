@@ -21,6 +21,7 @@ const Dashboard = () => {
     const [chartType, setChartType] = useState('bar');
     const [chartDataErr, setChartDataErr] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [retryError, setRetryError] = useState(false);
 
     useEffect(() => {
         const query = process.env.REACT_APP_API_SERVER + 'dashboard/last7Days'; // Query string
@@ -86,8 +87,15 @@ const Dashboard = () => {
         setLoading(true);
         const response = await axios.get(query).catch((err) => {
             if (err) {
-                setChartDataErr(true);
-                setLoading(false);
+                if(err.response.data.errorMsg === 'Retry'){
+                    setRetryError(true);
+                    setLoading(false);
+                } 
+                else {
+                    setChartDataErr(true);
+                    setLoading(false);
+                }
+                
             }
         });
         const data = await response.data;
@@ -112,7 +120,8 @@ const Dashboard = () => {
                     </div>
                     {
                         // add back to settings component
-                        loading ? <Loader speedMultiplier={0.8} loading={loading} color={'#A8A8A8'} cssOverride={override} size={100} /> : !chartDataErr ? <DashboardGraph chartData={data} chartType={chartType} /> : <BackToSettings />
+                        loading ? <Loader speedMultiplier={0.8} loading={loading} color={'#A8A8A8'} cssOverride={override} size={100} /> : chartDataErr ? <BackToSettings /> : retryError ? <div className='dashboard-retry'>The CSV file isn't ready, retry in a few seconds</div>: <DashboardGraph chartData={data} chartType={chartType} />
+
                     }
                 </div>
                 <PeakBox timePeriod={timePeriod} peakValue={peakValue} />

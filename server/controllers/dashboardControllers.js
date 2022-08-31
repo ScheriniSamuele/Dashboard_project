@@ -8,6 +8,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import moment from 'moment';
 import { tidy, summarize, sum, groupBy, filter, mutate, sliceMax, median, debug } from '@tidyjs/tidy';
+import schedule from 'node-schedule';
 
 // Combinations to identify the time slots from a certain data and hour
 import { F1Combinations, F2Combinations, F3Combinations, F23Combinations } from '../data/enums.js';
@@ -23,8 +24,25 @@ const file = editJsonFile(path);
 const inputPath = file.get('inputPath');
 const maxPower = file.get('power') * 1000;
 
-let data = [];
+let data = false;
 
+
+let time = {hour: 0, minute: 0};
+
+  
+    const updateCSV = schedule.scheduleJob(time, function() {
+        if(fs.existsSync(inputPath)){
+            CSVtoJSON()
+            .fromFile(inputPath)
+            .then((jsonData) => {
+                data = jsonData;
+            })
+            .catch((err) => console.log(err));
+        }
+    });
+
+
+        
 fs.access(inputPath, (err) => {
     if (!err) {
         CSVtoJSON()
@@ -35,7 +53,6 @@ fs.access(inputPath, (err) => {
             .catch((err) => console.log(err));
     }
 });
-
 //------------Controllers--------------------
 
 // @route /api/dashboard/getLast24h
@@ -46,6 +63,12 @@ export const getLast24h = asyncHandler(async (req, res) => {
             res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
             return;
         }
+
+        if(data === false){
+            res.status(400).json({ status: 'ko', errorMsg: 'Retry' });
+            return;
+        }
+        
         const lastRecord = data[data.length - 1];
         const lastDateHour = moment(lastRecord.data + '/' + lastRecord.ora, 'MM-DD-YY-hh:mm');
         const firstDateHour = moment(lastDateHour);
@@ -88,6 +111,12 @@ export const getLast72h = asyncHandler(async (req, res) => {
             res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
             return;
         }
+        
+        if(data === false){
+            res.status(400).json({ status: 'ko', errorMsg: 'Retry' });
+            return;
+        }
+
         const lastRecord = data[data.length - 1];
         const lastDateHour = moment(lastRecord.data + '/' + lastRecord.ora, 'MM-DD-YY-hh:mm');
         const firstDateHour = moment(lastDateHour);
@@ -112,9 +141,15 @@ export const getLast72h = asyncHandler(async (req, res) => {
 // @route /api/dashboard/getLast7days
 // @desc Get the user data for the dashboard for the last 7 days
 export const getLast7days = asyncHandler(async (req, res) => {
+
     fs.access(inputPath, (err) => {
         if (err) {
             res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
+            return;
+        }
+
+        if(data === false){
+            res.status(400).json({ status: 'ko', errorMsg: 'Retry' });
             return;
         }
 
@@ -172,6 +207,11 @@ export const getLast30days = asyncHandler(async (req, res) => {
             return;
         }
 
+        if(data === false){
+            res.status(400).json({ status: 'ko', errorMsg: 'Retry' });
+            return;
+        }
+
         const lastDay = data[data.length - 1].data;
         const lastDate = moment(lastDay, 'MM-DD-YY');
         const firstDate = moment(lastDate);
@@ -226,7 +266,10 @@ export const syncFile = asyncHandler(async (req, res) => {
             data = jsonData;
         })
         .catch((err) => console.log(err));
+
+        console.log(data[data.length - 1]);
 });
+
 
 //----Helpers------
 
