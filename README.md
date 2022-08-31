@@ -30,7 +30,7 @@ Di seguito vengono riportati tutti i passaggi necessari per installare questa ap
    `git clone https://github.com/ScheriniSamuele/Dashboard_project.git`
 3. Entrare nella cartella del server ed installare le dependencies necessarie copiando ed eseguendo il seguente comando:
    `npm i`
-4. Avviare il serevr nel seguente modo:
+4. Avviare il server nel seguente modo:
    `node index.js`
    Oppure, se l'utente preferisce avviare il server tramite un servizio apposito che permette il riavvio automatico al salvataggio del codice:
    `npm install -g nodemon` per installare il servizio nodemon,
