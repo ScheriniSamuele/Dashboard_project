@@ -24,7 +24,28 @@ const AddedContracts = () => {
     return (
         <div className='contract-box'>
             <h2>Added contracts</h2>
-            <table>
+            <table className='contracts-table'>
+                <thead>
+                    <th>
+                        Label
+                    </th>
+
+                    <th>
+                        Typology
+                    </th>
+
+                    <th>
+                        F1 Cost
+                    </th>
+
+                    <th>
+                        F2 Cost
+                    </th>
+
+                    <th>
+                        F3 Cost
+                    </th>
+                </thead>
                 <tbody>
                     {contracts.map((item, i) => (
                             <tr key={i}>

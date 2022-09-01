@@ -17,11 +17,19 @@
     align-self: safe center;
 }
 
+.contracts-table {
+    width: 100%;
+    line-height: 40px;
+}
+
 .contract-box {
+    margin-left: 20%;
+    margin-bottom: 10%;
     text-align: center;
     background-color: var(--blocks-color);
     padding: 1.5rem;
     border-radius: 1rem;
+    width: 60%;
     font-size: 18px;
 }
 
