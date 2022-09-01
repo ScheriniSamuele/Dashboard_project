@@ -12,6 +12,11 @@
     margin-top: 1rem;
 }
 
+.settings-input-label {
+    margin-top: 2rem;
+    align-self: safe center;
+}
+
 .settings-box {
     background-color: var(--blocks-color);
     padding: 1.5rem;
