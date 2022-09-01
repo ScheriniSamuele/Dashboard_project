@@ -17,14 +17,17 @@ const InputCostsAdd = (props) => {
     useEffect(() => {
         if (timeSlots === 'single-slot') {
             setSlots(['F1']);
+            costs.length = 1;
         }
 
         if (timeSlots === 'double-slots') {
             setSlots(['F1', 'F23']);
+            costs.length = 2;
         }
 
         if (timeSlots === 'multi-slots') {
             setSlots(['F1', 'F2', 'F3']);
+            costs.length = 3;
         }
     }, [timeSlots, costs]);
 

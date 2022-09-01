@@ -44,6 +44,7 @@ export const getContracts = asyncHandler(async (req, res) => {
 export const addContract = asyncHandler(async (req, res) => {
     const { label, typology, costs } = req.body;
     let isUnique = true;
+    
     const contracts = file.get('contracts');
 
     if(contracts !== null){
@@ -56,7 +57,6 @@ export const addContract = asyncHandler(async (req, res) => {
         });
     }
     
-
     // Checks if fields are null
     if (!label || !typology || !costs) {
         res.status(400).json({ status: 'ko', errorMsg: 'Please fill all requested information' });

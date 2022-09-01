@@ -16,7 +16,7 @@ import AddedContracts from '../Components/AddedContracts';
 const Settings = () => {
     const [timeSlots, setTimeSlots] = useState('multi-slots');
     const [errorMsg, setErrorMsg] = useState('');
-    const [costs, setCosts] = useState('');
+    const [costs, setCosts] = useState([]);
     const [label, setLabel] = useState('');
 
     const contractSchema = yup.object().shape({

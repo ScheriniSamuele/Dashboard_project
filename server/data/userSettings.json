@@ -14,6 +14,53 @@
       "costs": [
         "0.3"
       ]
+    },
+    {
+      "label": "EDISON",
+      "typology": "double-slots",
+      "costs": [
+        "0.234",
+        "0.3"
+      ]
+    },
+    {
+      "label": "ENI",
+      "typology": "single-slot",
+      "costs": [
+        "0.2"
+      ]
+    },
+    {
+      "label": "ENID",
+      "typology": "multi-slots",
+      "costs": [
+        "0.2",
+        "0.4",
+        "0.3"
+      ]
+    },
+    {
+      "label": "ENIDe",
+      "typology": "single-slot",
+      "costs": [
+        "0.2"
+      ]
+    },
+    {
+      "label": "ENIDed",
+      "typology": "multi-slots",
+      "costs": [
+        "0.2",
+        "0.3",
+        "0.1"
+      ]
+    },
+    {
+      "label": "ENIDedd",
+      "typology": "single-slot",
+      "costs": [
+        "0.4"
+      ]
     }
   ]
 }
