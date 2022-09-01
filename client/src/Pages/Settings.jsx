@@ -14,7 +14,7 @@ import Popup from '../Components/Popup';
 import '../Styles/Settings.css';
 
 const Settings = () => {
-    const [timeSlots, setTimeSlots] = useState('');
+    const [timeSlots, setTimeSlots] = useState('multi-slots');
     const [openPopup, setOpenPopup] = useState(false);
     const [userCosts, setUserCosts] = useState([]);
     const [power, setPower] = useState('');

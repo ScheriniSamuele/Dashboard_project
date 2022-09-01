@@ -13,7 +13,7 @@ import InputCostsAdd from '../Components/InputCostsAdd';
 import '../Styles/Settings.css';
 
 const Settings = () => {
-    const [timeSlots, setTimeSlots] = useState('single-slot');
+    const [timeSlots, setTimeSlots] = useState('multi-slots');
     const [errorMsg, setErrorMsg] = useState('');
     const [costs, setCosts] = useState('');
     const [label, setLabel] = useState('');
