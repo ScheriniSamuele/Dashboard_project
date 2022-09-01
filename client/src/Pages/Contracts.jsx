@@ -11,6 +11,7 @@ import InputCostsAdd from '../Components/InputCostsAdd';
 //import SentUpdate from '../Components/SentUpdate';
 
 import '../Styles/Settings.css';
+import AddedContracts from '../Components/AddedContracts';
 
 const Settings = () => {
     const [timeSlots, setTimeSlots] = useState('multi-slots');
@@ -23,7 +24,6 @@ const Settings = () => {
         typology: yup.string().required(),
         costs: yup.array().of(yup.number()).min(1).required(),
     });
-
 
     const addContract = async (e) => {
         e.preventDefault();
@@ -79,6 +79,8 @@ const Settings = () => {
             </form>
 
             <div className='settings-error-msg'>{errorMsg}</div>
+
+            <AddedContracts />
         </motion.div>
     );
 };

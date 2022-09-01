@@ -17,6 +17,14 @@
     align-self: safe center;
 }
 
+.contract-box {
+    text-align: center;
+    background-color: var(--blocks-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    font-size: 18px;
+}
+
 .settings-box {
     background-color: var(--blocks-color);
     padding: 1.5rem;

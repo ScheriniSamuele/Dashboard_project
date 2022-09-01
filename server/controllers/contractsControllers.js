@@ -24,20 +24,38 @@ const file = editJsonFile(path);
 
 //------------Controllers--------------------
 
-// @route /api/settings/setSettings
-// @desc Sets the user settings in the Json file
+// @route /api/contracts/getContracts
+// @desc Get the inserted contracts
+export const getContracts = asyncHandler(async (req, res) => {
+    // Check if file exists and can
+
+    if (!fs.existsSync(path)) {
+        res.status(400).json({ status: 'ko', errorMsg: 'There must be an error in the filePath, you have to change it' });
+        throw new Error('Invalid path for reading');
+    }
+
+    const response = file.toObject();
+
+    res.status(200).json(response);
+});
+
+// @route /api/contracts/addContract
+// @desc Adds the contract inserted by the user
 export const addContract = asyncHandler(async (req, res) => {
     const { label, typology, costs } = req.body;
     let isUnique = true;
     const contracts = file.get('contracts');
 
-    contracts.forEach(element => {
-        if(label === element.label){
-            res.status(400).json({ status: 'ko', errorMsg: 'Contract label must be unique' });
-            throw new Error('Contract label must be unique');
-        }
-        
-    });
+    if(contracts !== null){
+        contracts.forEach(element => {
+            if(label === element.label){
+                res.status(400).json({ status: 'ko', errorMsg: 'Contract label must be unique' });
+                throw new Error('Contract label must be unique');
+            }
+            
+        });
+    }
+    
 
     // Checks if fields are null
     if (!label || !typology || !costs) {
