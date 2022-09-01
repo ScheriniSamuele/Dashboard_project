@@ -51,7 +51,7 @@ const AddedContracts = () => {
                             <tr key={i}>
                                 <td>{item.label}</td>
                                 <td>{item.typology}</td>
-                                {item.costs.map((cost, index) => (<td key={index}>{cost}</td>))}
+                                {item.costs.map((cost, index) => (<td key={index}>{cost}  €/KWh</td>))}
                             </tr>
                     ))}
                 </tbody>
