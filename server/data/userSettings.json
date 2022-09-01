@@ -1,10 +1,10 @@
 {
-  "inputPath": "c:\\Users\\arbid\\Documents\\energy.csv",
-  "power": "3.2",
-  "typology": "multi-slots",
+  "inputPath": "",
+  "power": "",
+  "typology": "",
   "costs": [
-    "0.258",
-    "0.2",
-    "0.3"
+    "",
+    "",
+    ""
   ]
 }

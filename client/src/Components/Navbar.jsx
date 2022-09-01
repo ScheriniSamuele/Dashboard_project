@@ -26,7 +26,7 @@ const Navbar = () => {
                 <Link to='/contracts' className='navbar-menu-link'>
                     <li className='navbar-menu-item'>
                         <Icon className='navbar-menu-icon' icon='teenyicons:contract-outline' color='white' />
-                        <span className='invisible'>Contracts</span>
+                        <span className='invisible'>Other Contracts</span>
                     </li>
                 </Link>
                 <Link to='/documentation' className='navbar-menu-link'>
