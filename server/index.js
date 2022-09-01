@@ -25,4 +25,7 @@ app.use('/api/dashboard', dashboardRouter);
 import costRouter from './routes/costs.js';
 app.use('/api/cost', costRouter)
 
+import contractsRouter from './routes/contracts.js';
+app.use('/api/contracts', contractsRouter)
+
 app.listen(port, () => console.log(`app listening on port ${port}`));

@@ -11,6 +11,8 @@ import chart72hours from '../Images/chart72hours.png';
 import chart24hours from '../Images/chart24hours.png';
 import peakdash from '../Images/peakdash.png';
 import timeslotsdash from '../Images/timeslotsdash.png';
+import othercontracts from '../Images/othercontracts.png';
+import contractlabel from '../Images/contractlabel.png';
 import contract from '../Images/contract.png';
 import average from '../Images/average.png';
 import averagecompare from '../Images/averagecompare.png';
@@ -75,6 +77,7 @@ const Documentation = () => {
                 <br/>
                 This sections shows the energy consumption grouped by time slot
                 <br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/>
         <h2 id='costs-header'  className='documentation-title'>Cost</h2>
             <img src={cost} className='doc-img' alt='Cost page' />
             <p className='documentation-info'>
@@ -82,24 +85,28 @@ const Documentation = () => {
                 The cost page shows to the user an average cost based on his settings and on the data of the last month, it can be used to have an idea of the cost and to compare some contracts and see which is the best. 
                 <br/><br/><br/>
             </p>
+            <hr/><br/><br/><br/>
         <h3 id="average-header" className='documentation-subtitle'>Average cost</h3>
             <img className='small-img' src={average} alt='Average cost'  />
             <p className='documentation-info'>
                 It shows the average daily, monthly and annual cost based on the data of the last 30 days
                 <br/><br/><br/>
             </p>
+            <hr/><br/><br/><br/>
         <h3 id="compare-header" className='documentation-subtitle'>Compare</h3>
             <img className='small-img' src={compare} alt='Compare'  />
             <p className='documentation-info'>
                 The user can insert a different contract that he wants to compare with his current contract to see the difference of cost and which type of contract is cheaper
                 <br/><br/><br/>
             </p>
+            <hr/><br/><br/><br/>
         <h3 id="average-compare-header" className='documentation-subtitle'>Average cost comparation</h3>
             <img className='power-img' src={averagecompare} alt='Average cost comparation'  />
             <p className='documentation-info'>
                     It shows to the user the average cost based on the inserted contract in the compare form 
                     <br/><br/><br/>
             </p>
+            <br/><br/><br/><br/><br/><br/>
         <h2 id="settings-header" className='documentation-title'>Settings</h2>
                 <img src={settings} className='doc-img' alt='Settings page' />
                 <p className='documentation-info'>
@@ -154,6 +161,22 @@ const Documentation = () => {
                 
             </p>
             <br /><br />
+
+            <br/><br/><br/><br/><br/><br/>
+            <h2 id="other-contracts-header" className='documentation-title'>Other contracts</h2>
+                <img src={othercontracts} className='doc-img' alt='Other contracts page' />
+                <p className='documentation-info'>
+                        The other contracts page is used to add some contracts the user wants to compare with his one, the inputs are the same as the settings page
+                        <br/><br/><br/>
+                    </p>
+                <hr/><br/><br/><br/>
+                <h3 id="contract-label-header" className='documentation-subtitle'>Contract label input</h3>
+                <br />
+                    <img className='power-img' src={contractlabel} alt='Daily available power'  />
+                    <p className='documentation-info'>
+                        The user has to insert a label to identify the contract's info he wants to add (es. ENEL, EDISON...)
+                        <br/><br/><br/>
+                    </p>
         </main>
         <TableOfContents />
         </div>     

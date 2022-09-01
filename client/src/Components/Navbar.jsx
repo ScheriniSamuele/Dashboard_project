@@ -23,6 +23,12 @@ const Navbar = () => {
                         <span className='invisible'>Costs</span>
                     </li>
                 </Link>
+                <Link to='/contracts' className='navbar-menu-link'>
+                    <li className='navbar-menu-item'>
+                        <Icon className='navbar-menu-icon' icon='teenyicons:contract-outline' color='white' />
+                        <span className='invisible'>Other Contracts</span>
+                    </li>
+                </Link>
                 <Link to='/documentation' className='navbar-menu-link'>
                     <li className='navbar-menu-item'>
                         <Icon className='navbar-menu-icon' icon='fluent:document-16-filled' color='white' />

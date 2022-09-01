@@ -1,6 +1,20 @@
 {
-    "inputPath": "",
-    "power": "",
-    "typology": "multi-slots",
-    "costs": ["", "", ""]
+  "inputPath": "C:/Users/arbid/Documents/energy.csv",
+  "power": "3.2",
+  "typology": "multi-slots",
+  "costs": [
+    "0.23",
+    "0.24",
+    "0.25"
+  ],
+  "contracts": [
+    {
+      "label": "ENI",
+      "typology": "double-slots",
+      "costs": [
+        "0.4",
+        "0.2"
+      ]
+    }
+  ]
 }
