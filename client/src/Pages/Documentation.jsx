@@ -12,12 +12,12 @@ import chart24hours from '../Images/chart24hours.png';
 import peakdash from '../Images/peakdash.png';
 import timeslotsdash from '../Images/timeslotsdash.png';
 import othercontracts from '../Images/othercontracts.png';
+import contractToCompare from '../Images/contract_to_compare.png';
 import contractlabel from '../Images/contractlabel.png';
 import contract from '../Images/contract.png';
 import average from '../Images/average.png';
-import averagecompare from '../Images/averagecompare.png';
-import compare from '../Images/compare.png';
-import cost from '../Images/costpage.png';
+import compare from '../Images/contractcompare.png';
+import cost from '../Images/costspage.png';
 
 import '../Styles/Documentation.css';
 
@@ -82,7 +82,8 @@ const Documentation = () => {
             <img src={cost} className='doc-img' alt='Cost page' />
             <p className='documentation-info'>
                 <br/>
-                The cost page shows to the user an average cost based on his settings and on the data of the last month, it can be used to have an idea of the cost and to compare some contracts and see which is the best. 
+                The cost page shows to the user an average cost based on his settings and on the data of the last month, it can be used to have an idea of the cost and to compare some contracts and see which is the best.<br/>
+                The user can add as many contract as he wants.
                 <br/><br/><br/>
             </p>
             <hr/><br/><br/><br/>
@@ -96,14 +97,16 @@ const Documentation = () => {
         <h3 id="compare-header" className='documentation-subtitle'>Compare</h3>
             <img className='small-img' src={compare} alt='Compare'  />
             <p className='documentation-info'>
-                The user can insert a different contract that he wants to compare with his current contract to see the difference of cost and which type of contract is cheaper
+                The user can choose a different contract that he wants to compare with his current contract to see the difference of cost and which type of contract is cheaper.<br/>
+                By clicking the compare button it will show the average costs based on the chosen contract.
                 <br/><br/><br/>
             </p>
             <hr/><br/><br/><br/>
+            
         <h3 id="average-compare-header" className='documentation-subtitle'>Average cost comparation</h3>
-            <img className='power-img' src={averagecompare} alt='Average cost comparation'  />
+            <img className='power-img' src={contractToCompare} alt='Average cost comparation'  />
             <p className='documentation-info'>
-                    It shows to the user the average cost based on the inserted contract in the compare form 
+                    It shows to the user the average cost based on the chosen contract in the compare form it will appear after clicking the compare button for the chosen contract.
                     <br/><br/><br/>
             </p>
             <br/><br/><br/><br/><br/><br/>
