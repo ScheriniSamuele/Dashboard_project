@@ -50,36 +50,36 @@ export const getCosts = asyncHandler(async (req, res) => {
 
         let costs = null;
         let contract = null;
+        let label = 'my-contract';
 
         // If req.body is not empty
         if (Object.keys(req.body).length !== 0) {
-            costs = req.body.costs.map((el) => Number(el));
-            if (!onlyNumbers(costs)) {
-                res.status(400).json({ status: 'ko', errorMsg: 'Costs must be only numbers' });
+            if (req.body.label == null) {
+                res.status(400).json({ status: 'ko', errorMsg: 'Error in the request' });
                 return;
             }
 
-            contract = req.body.typology;
-            // Check if costs length is OK with chosen length
-            if (contract === 'single-slot' && costs.length < 1) {
-                res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
-                return;
-            }
-
-            if (contract === 'double-slots' && costs.length < 2) {
-                res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
-                return;
-            }
-
-            if (contract === 'multi-slots' && costs.length < 3) {
-                res.status(400).json({ status: 'ko', errorMsg: 'Invalid costs length' });
+            label = req.body.label;
+            if (typeof label !== 'string') {
+                res.status(400).json({ status: 'ko', errorMsg: 'Label must be a string' });
                 return;
             }
         }
 
-        if (costs == null) {
+        console.log('----->label: ', label);
+
+        if (label === 'my-contract') {
             costs = file.get('costs');
             contract = file.get('typology');
+        } else {
+            let otherContracts = file.get('contracts');
+            if (otherContracts.filter((contract) => contract.label === label)[0] == null) {
+                res.status(400).json({ status: 'ko', errorMsg: 'Insert a valid contract' });
+                return;
+            }
+            const foundContract = otherContracts.filter((contract) => contract.label === label)[0];
+            costs = foundContract.costs;
+            contract = foundContract.typology;
         }
 
         let monthlyCost = 0;
@@ -151,6 +151,7 @@ export const getCosts = asyncHandler(async (req, res) => {
         annualCost = monthlyCost * 12;
 
         let averageCosts = {
+            label: label,
             dailyCost: dailyCost,
             monthlyCost: monthlyCost,
             annualCost: annualCost,

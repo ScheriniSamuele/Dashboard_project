@@ -44,19 +44,18 @@ export const getContracts = asyncHandler(async (req, res) => {
 export const addContract = asyncHandler(async (req, res) => {
     const { label, typology, costs } = req.body;
     let isUnique = true;
-    
+
     const contracts = file.get('contracts');
 
-    if(contracts !== null){
-        contracts.forEach(element => {
-            if(label === element.label){
+    if (contracts !== null) {
+        contracts.forEach((element) => {
+            if (label === element.label) {
                 res.status(400).json({ status: 'ko', errorMsg: 'Contract label must be unique' });
                 throw new Error('Contract label must be unique');
             }
-            
         });
     }
-    
+
     // Checks if fields are null
     if (!label || !typology || !costs) {
         res.status(400).json({ status: 'ko', errorMsg: 'Please fill all requested information' });
@@ -95,12 +94,11 @@ export const addContract = asyncHandler(async (req, res) => {
         label: label,
         typology: typology,
         costs: costs,
-    }
+    };
 
     // Set new values and save them
-    file.append("contracts", newContract);
+    file.append('contracts', newContract);
     file.save();
-    syncFile();
 
     res.status(200).json({ message: 'ok, everything done' });
 });

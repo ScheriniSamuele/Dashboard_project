@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AddedContracts = () => {
@@ -6,7 +6,7 @@ const AddedContracts = () => {
 
     useEffect(() => {
         fetchContracts();
-    }, []);
+    }, [contracts]);
 
     const fetchContracts = () => {
         const query = process.env.REACT_APP_API_SERVER + 'contracts/getContracts'; // Query string
@@ -26,33 +26,25 @@ const AddedContracts = () => {
             <h2>Added contracts</h2>
             <table className='contracts-table'>
                 <thead>
-                    <th>
-                        Label
-                    </th>
+                    <th>Label</th>
 
-                    <th>
-                        Typology
-                    </th>
+                    <th>Typology</th>
 
-                    <th>
-                        F1 Cost
-                    </th>
+                    <th>F1 Cost</th>
 
-                    <th>
-                        F2 Cost
-                    </th>
+                    <th>F2 Cost</th>
 
-                    <th>
-                        F3 Cost
-                    </th>
+                    <th>F3 Cost</th>
                 </thead>
                 <tbody>
                     {contracts.map((item, i) => (
-                            <tr key={i}>
-                                <td>{item.label}</td>
-                                <td>{item.typology}</td>
-                                {item.costs.map((cost, index) => (<td key={index}>{cost}  €/KWh</td>))}
-                            </tr>
+                        <tr key={i}>
+                            <td>{item.label}</td>
+                            <td>{item.typology}</td>
+                            {item.costs.map((cost, index) => (
+                                <td key={index}>{cost} €/KWh</td>
+                            ))}
+                        </tr>
                     ))}
                 </tbody>
             </table>
