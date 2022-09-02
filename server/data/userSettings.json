@@ -1,5 +1,5 @@
 {
-  "inputPath": "C:/Users/arbid/Documents/energy.csv",
+  "inputPath": "/Users/samuelescherini/documents/energy.csv",
   "power": "3.2",
   "typology": "multi-slots",
   "costs": [
@@ -14,6 +14,21 @@
       "costs": [
         "0.4",
         "0.2"
+      ]
+    },
+    {
+      "label": "A2A",
+      "typology": "single-slot",
+      "costs": [
+        "0.231"
+      ]
+    },
+    {
+      "label": "ENEL",
+      "typology": "double-slots",
+      "costs": [
+        "0.215",
+        "0.289"
       ]
     }
   ]
