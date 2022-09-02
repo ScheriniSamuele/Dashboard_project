@@ -119,7 +119,6 @@ const Dashboard = () => {
                         <Select styles={selectorStyles} className='input-select-dashboard' options={options} onChange={changeTimePeriod} value={{ label: timePeriod, value: timePeriod }}></Select>
                     </div>
                     {
-                        // add back to settings component
                         loading ? <Loader speedMultiplier={0.8} loading={loading} color={'#A8A8A8'} cssOverride={override} size={100} /> : chartDataErr ? <BackToSettings /> : retryError ? <div className='dashboard-retry'>The CSV file isn't ready, retry in a few seconds</div>: <DashboardGraph chartData={data} chartType={chartType} />
 
                     }

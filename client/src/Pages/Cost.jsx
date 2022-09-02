@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import CostColumnValues from '../Components/CostColumnValues';
 import CompareContract from '../Components/CompareContract';
 import OtherCostColumnValues from '../Components/OtherCostColumnValues';
+import Loader from 'react-spinners/MoonLoader';
 
 import '../Styles/Cost.css';
 
@@ -19,13 +20,18 @@ const Cost = () => {
     });
 
     const [otherContractLabel, setOtherContractLabel] = useState('');
-
     const [errorMsg, setErrorMsg] = useState('');
-
     const [contracts, setContracts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [loadingOther, setLoadingOther] = useState(true);
 
     // For cotract list
     const [otherContracts, setOtherContracts] = useState([]);
+
+    const override = {
+        display: 'block',
+        margin: '12rem auto',
+    };
 
     const compare = () => {
         const query = process.env.REACT_APP_API_SERVER + 'cost/getCosts'; // Query string
@@ -46,6 +52,7 @@ const Cost = () => {
             }
         });
         const data = await response.data;
+        if (data) setLoading(false);
         console.log(data);
         setContracts(data.contracts);
     };
@@ -80,7 +87,10 @@ const Cost = () => {
 
         const data = await response.data;
 
-        if (data) setErrorMsg('');
+        if (data){
+            setLoadingOther(false);
+            setErrorMsg('');
+        }
 
         setOtherContracts((otherContracts) => [
             ...otherContracts,
@@ -105,17 +115,24 @@ const Cost = () => {
             <div className='cost-flex-content'>
                 <div className='cost-column'>
                     <h3 className='cost-column-title'>How much do I spend?</h3>
-                    <CostColumnValues contractData={contractData} />
+                    {
+                        loading ? <Loader speedMultiplier={0.8} loading={loading} color={'#A8A8A8'} cssOverride={override} size={100} /> : <CostColumnValues contractData={contractData} />
+                    }
                 </div>
                 <div className='cost-column'>
                     <h3 className='cost-column-title'>Compare</h3>
                     <CompareContract compareFunction={compare} contracts={contracts} setOtherContractLabel={setOtherContractLabel} />
                 </div>
+               
+                            
                 {otherContracts.map((comparedContract, index) => {
                     return (
-                        <div className='cost-column ' key={index}>
+                        <div className='cost-column' key={index}>
+                        
                             <h3 className={`cost-column-title  ${index % 2 === 0 ? 'yellowText' : 'purpleText'}`}>{comparedContract.label}</h3>
-                            <OtherCostColumnValues contractData={comparedContract} />
+                            {
+                                loadingOther ? <Loader speedMultiplier={0.8} loading={loading} color={'#A8A8A8'} cssOverride={override} size={100} /> : <OtherCostColumnValues contractData={comparedContract} />
+                            }
                             <div className='cost-remove-button' onClick={() => removeContract(index)}>
                                 <Icon className='cost-del-icon' icon='ion:trash-bin-outline' color='white' />
                             </div>

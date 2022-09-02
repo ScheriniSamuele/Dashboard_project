@@ -1,5 +1,5 @@
 {
-  "inputPath": "/Users/samuelescherini/documents/energy.csv",
+  "inputPath": "/Users/arbid/documents/energy.csv",
   "power": "3.2",
   "typology": "multi-slots",
   "costs": [
@@ -29,6 +29,15 @@
       "costs": [
         "0.215",
         "0.289"
+      ]
+    },
+    {
+      "label": "EDISON",
+      "typology": "multi-slots",
+      "costs": [
+        "0.2",
+        "0.3",
+        "0.4"
       ]
     }
   ]

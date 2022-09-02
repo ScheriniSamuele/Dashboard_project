@@ -9,7 +9,7 @@
     grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
     gap: 1rem;
     position: relative;
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .settings-input-label {
@@ -22,15 +22,13 @@
     line-height: 40px;
 }
 
-.contract-box {
-    margin-left: 20%;
-    margin-bottom: 10%;
+.contract-table-box {
+    margin-bottom: 2rem;
     text-align: center;
     background-color: var(--blocks-color);
     padding: 1.5rem;
     border-radius: 1rem;
-    width: 60%;
-    font-size: 18px;
+    width: auto;
 }
 
 .settings-box {
