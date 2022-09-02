@@ -6,7 +6,7 @@ const AddedContracts = () => {
 
     useEffect(() => {
         fetchContracts();
-    }, []);
+    }, [contracts]);
 
     const fetchContracts = () => {
         const query = process.env.REACT_APP_API_SERVER + 'contracts/getContracts'; // Query string
