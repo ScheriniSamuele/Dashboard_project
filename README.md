@@ -22,8 +22,9 @@ Pre-requisiti:
 2. Avere npm (node package manager) installato sulla macchina, viene installato assieme Node.js in automatico.
 3. Avere a disposizione un terminale sulla macchina e preferibilmente un text editor con terminale integrato (ad esempio Visual Studio Code).
 4. Avere git installato sulla macchina: [git](https://git-scm.com/).
+5. Il file .csv deve presentare i valori registrati nel seguente formato: data('MM-DD-AA'), ora(hh:mm:ss), Watt con i valori separati da una virgola come nell'immagine sottostante.
 
-Inoltre il file .csv deve presentare i valori registrati nel seguente formato: data('MM-DD-AA'), ora(hh:mm:ss), Watt con i valori separati da una virgola come nell'immagine sottostante.
+![immagine](https://user-images.githubusercontent.com/100212250/188176356-7af1325b-f99b-4a38-8dd9-da86b8784a46.png)
 
 Di seguito vengono riportati tutti i passaggi necessari per installare questa applicazione e testarla su una macchina in locale:
 
