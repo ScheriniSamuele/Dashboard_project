@@ -4,7 +4,7 @@
 
 L’insegnamento ha lo scopo di consentire agli allievi di sperimentare praticamente alcune delle conoscenze apprese nel corso di studi, mediante la realizzazione di un progetto pratico, sotto la guida di un docente responsabile. I prerequisiti sono indicati progetto per progetto; in generale, è richiesta la conoscenza di almeno un linguaggio di programmazione tra quelli usati nei corsi (o la disponibilità ad apprenderlo durante il progetto).
 
-## Descrizione della tarccia
+## Descrizione della traccia
 
 Il progetto ha l’obiettivo di migliorare la percezione e consapevolezza dell’utente relativa ai consumi energetici e del costo di essi.
 Si dispone di sensori che collezionano i dati relativi ai consumi elettrici (alimentazione di dispositivi, luci, condizionamento/riscaldamento) e si vuole realizzare interfacce web e per dispositivi mobili che consentano di visualizzare in modo immediato tramite l'utilizzo di grafici dei consumi effettuati e dei costi previsti.
@@ -22,6 +22,8 @@ Pre-requisiti:
 2. Avere npm (node package manager) installato sulla macchina, viene installato assieme Node.js in automatico.
 3. Avere a disposizione un terminale sulla macchina e preferibilmente un text editor con terminale integrato (ad esempio Visual Studio Code).
 4. Avere git installato sulla macchina: [git](https://git-scm.com/).
+
+Inoltre il file .csv deve presentare i valori registrati nel seguente formato: data('MM-DD-AA'), ora(hh:mm:ss), Watt con i valori separati da una virgola come nell'immagine sottostante.
 
 Di seguito vengono riportati tutti i passaggi necessari per installare questa applicazione e testarla su una macchina in locale:
 

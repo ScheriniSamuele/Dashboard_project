@@ -1,44 +1,9 @@
 {
-  "inputPath": "/Users/arbid/documents/energy.csv",
-  "power": "3.2",
-  "typology": "multi-slots",
+  "inputPath": "",
+  "power": "",
+  "typology": "",
   "costs": [
-    "0.23",
-    "0.24",
-    "0.25"
   ],
   "contracts": [
-    {
-      "label": "ENI",
-      "typology": "double-slots",
-      "costs": [
-        "0.4",
-        "0.2"
-      ]
-    },
-    {
-      "label": "A2A",
-      "typology": "single-slot",
-      "costs": [
-        "0.231"
-      ]
-    },
-    {
-      "label": "ENEL",
-      "typology": "double-slots",
-      "costs": [
-        "0.215",
-        "0.289"
-      ]
-    },
-    {
-      "label": "EDISON",
-      "typology": "multi-slots",
-      "costs": [
-        "0.2",
-        "0.3",
-        "0.4"
-      ]
-    }
   ]
 }
